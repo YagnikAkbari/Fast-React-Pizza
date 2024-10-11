@@ -1,4 +1,3 @@
-import firebase from "firebase/compat/app";
 /* eslint-env worker */
 importScripts("https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js");
 importScripts(
