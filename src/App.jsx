@@ -12,6 +12,7 @@ import AppLayout from "./ui/AppLayout";
 import Error from "./ui/Error";
 import { action as updateOrderAction } from "./fetaures/order/UpdateOrder";
 import { useEffect } from "react";
+import { messaging } from "../firebase";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,8 @@ function App() {
     Notification.requestPermission().then((permission) => {
       if (permission === "granted") {
         console.log("Notification permission granted.");
+        console.log("messaging", messaging);
+        
         // You can now show notifications
       } else if (permission === "denied") {
         console.log("Notification permission denied.");
