@@ -13,6 +13,7 @@ import Error from "./ui/Error";
 import { action as updateOrderAction } from "./fetaures/order/UpdateOrder";
 import { useEffect } from "react";
 import { messaging } from "../firebase";
+import { getToken, onMessage } from "firebase/messaging";
 
 const router = createBrowserRouter([
   {
@@ -51,18 +52,33 @@ const router = createBrowserRouter([
 
 function App() {
   useEffect(() => {
-    Notification.requestPermission().then((permission) => {
-      if (permission === "granted") {
-        console.log("Notification permission granted.");
-        console.log("messaging", messaging);
-        
-        // You can now show notifications
-      } else if (permission === "denied") {
-        console.log("Notification permission denied.");
-        // You cannot show notifications
-      } else {
-        console.log("Notification permission dismissed.");
+    // Request permission for notifications
+    const requestPermission = async () => {
+      try {
+        const token = await getToken(messaging, {
+          vapidKey: process.env.REACT_APP_FCM_VAPID_PUBLIC_KEY,
+        });
+        if (token) {
+          console.log("FCM Token:", token);
+          // Send the token to your server to send notifications
+        } else {
+          console.log(
+            "No registration token available. Request permission to generate one."
+          );
+        }
+      } catch (err) {
+        console.log("Error occurred while retrieving token:", err);
       }
+    };
+
+    // Request permission on mount
+    requestPermission();
+
+    // Handle incoming messages when app is in foreground
+    onMessage(messaging, (payload) => {
+      console.log("Message received. ", payload);
+      // Display notification or update UI accordingly
+      alert(`New message: ${payload.notification.body}`);
     });
   }, []);
 
