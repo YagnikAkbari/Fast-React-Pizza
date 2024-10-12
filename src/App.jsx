@@ -76,7 +76,7 @@ function App() {
 
     // Handle incoming messages when app is in foreground
     onMessage(messaging, (payload) => {
-      console.log("Message received. ", payload);
+      console.log("firebase-message Message received. ", payload);
       // Display notification or update UI accordingly
       alert(`New message: ${payload.notification.body}`);
     });
