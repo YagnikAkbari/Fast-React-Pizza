@@ -76,10 +76,18 @@ function App() {
 
     // Handle incoming messages when app is in foreground
     onMessage(messaging, (payload) => {
-      console.log("firebase-message Message received. ", payload);
-      // Display notification or update UI accordingly
-      alert(`New message: ${payload.notification.body}`);
+      console.log('firebase-console Message received in the foreground:', payload);
+      // You can display the notification manually here
+      const notificationTitle = payload.notification.title;
+      const notificationOptions = {
+        body: payload.notification.body,
+        icon: payload.notification.icon,
+      };
+    
+      // Display notification using the browser's Notification API
+      new Notification(notificationTitle, notificationOptions);
     });
+    
   }, []);
 
   return <RouterProvider router={router} />;
