@@ -58,8 +58,7 @@ function App() {
         const token = await getToken(messaging, {
           vapidKey: process.env.REACT_APP_FCM_VAPID_PUBLIC_KEY,
         });
-        if (token) {
-          console.log("FCM Token:", token);
+        if (token) {          
           // if ("serviceWorker" in navigator) {
           //   navigator.serviceWorker
           //     .register("../firebase-messaging-sw.js")
@@ -89,7 +88,7 @@ function App() {
 
     // Handle incoming messages when app is in foreground
     onMessage(messaging, (payload) => {
-      console.log('firebase-console Message received in the foreground:', payload);
+      // console.log('firebase-console Message received in the foreground:', payload);
       // You can display the notification manually here
       const notificationTitle = payload.notification.title;
       const notificationOptions = {

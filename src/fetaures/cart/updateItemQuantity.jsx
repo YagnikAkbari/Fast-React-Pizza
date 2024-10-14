@@ -1,8 +1,7 @@
 import Button from "../../ui/Button";
 import PropTypes from "prop-types";
 
-function updateItemQuantity({ pizzaId }) {
-  console.log(pizzaId);
+function updateItemQuantity({ pizzaId }) {  
   return (
     <>
       <Button type="round">-</Button>
