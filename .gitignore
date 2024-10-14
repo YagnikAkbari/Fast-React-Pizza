@@ -28,5 +28,3 @@ package-lock.json
 *.njsproj
 *.sln
 *.sw?
-
-firebase-messaging-sw.js
