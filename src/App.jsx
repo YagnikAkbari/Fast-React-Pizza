@@ -60,6 +60,19 @@ function App() {
         });
         if (token) {
           console.log("FCM Token:", token);
+          // if ("serviceWorker" in navigator) {
+          //   navigator.serviceWorker
+          //     .register("../firebase-messaging-sw.js")
+          //     .then(function (registration) {
+          //       console.log(
+          //         "Registration successful, scope is:",
+          //         registration.scope
+          //       );
+          //     })
+          //     .catch(function (err) {
+          //       console.log("Service worker registration failed, error:", err);
+          //     });
+          // }
           // Send the token to your server to send notifications
         } else {
           console.log(
@@ -80,6 +93,7 @@ function App() {
       // Display notification or update UI accordingly
       alert(`New message: ${payload.notification.body}`);
     });
+    
   }, []);
 
   return <RouterProvider router={router} />;
